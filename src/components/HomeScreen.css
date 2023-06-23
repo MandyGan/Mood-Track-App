@@ -1,0 +1,21 @@
+.homeScreenContainer {
+    background-color: darksalmon;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+  }
+  .homeButton {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: none;
+  }
+  .logButton {
+    background-color: yellow;
+  
+  }
+  .reportButton {
+      background-color: pink
+  }

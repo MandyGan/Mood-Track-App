@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import "./App.css";
+import { HomeScreen } from "./components";
+import { APP_STATES } from "./utils/constants";
 function App() {
+  const [currentScreen, setCurrentScreen] = useState(APP_STATES.home);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="appContainer">
+      {currentScreen === APP_STATES.home ? (
+        <HomeScreen setCurrentScreen={setCurrentScreen} />
+      ) : null}
+
+      {currentScreen === APP_STATES.newRating ? "New Rating Form" : null}
+
+      {currentScreen === APP_STATES.viewReport ? "Report Goes Here" : null}
     </div>
   );
 }

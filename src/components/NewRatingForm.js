@@ -1,54 +1,20 @@
 import { APP_STATES } from "../utils/constants";
 import "./NewRatingForm.css";
+import { EmojiButton } from "./EmojiButton";
 
 export const NewRatingForm = ({ setRatings, setCurrentScreen }) => {
+  const handleButtonClick = (rating) => {
+    setRatings((ratings) => [...ratings, rating]);
+    setCurrentScreen(APP_STATES.home);
+  };
+
   return (
     <div className="newRatingForm">
-      <button
-        className="emojiButton"
-        onClick={() => {
-          setRatings((ratings) => [...ratings, -2]);
-          setCurrentScreen(APP_STATES.home);
-        }}
-      >
-        -2
-      </button>
-      <button
-        className="emojiButton"
-        onClick={() => {
-          setRatings((ratings) => [...ratings, -1]);
-          setCurrentScreen(APP_STATES.home);
-        }}
-      >
-        -1
-      </button>
-      <button
-        className="emojiButton"
-        onClick={() => {
-          setRatings((ratings) => [...ratings, 0]);
-          setCurrentScreen(APP_STATES.home);
-        }}
-      >
-        0
-      </button>
-      <button
-        className="emojiButton"
-        onClick={() => {
-          setRatings((ratings) => [...ratings, 1]);
-          setCurrentScreen(APP_STATES.home);
-        }}
-      >
-        +1
-      </button>
-      <button
-        className="emojiButton"
-        onClick={() => {
-          setRatings((ratings) => [...ratings, 2]);
-          setCurrentScreen(APP_STATES.home);
-        }}
-      >
-        +2
-      </button>
+      <EmojiButton handleClick={() => handleButtonClick(-1)} text={-2} />
+      <EmojiButton handleClick={() => handleButtonClick(-1)} text={-1} />
+      <EmojiButton handleClick={() => handleButtonClick(0)} text={0} />
+      <EmojiButton handleClick={() => handleButtonClick(1)} text={1} />
+      <EmojiButton handleClick={() => handleButtonClick(2)} text={2} />
     </div>
   );
 };

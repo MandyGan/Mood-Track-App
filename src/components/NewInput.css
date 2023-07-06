@@ -6,7 +6,7 @@
 }
 
 .newInput {
-  background-color: #fea49f;
+  background-color: #E1ECC8;
   height: 100%;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
 
 .newInput .submitButton {
   /* Styles for the submit button */
-  background-color: #FF8989;
+  background-color: #C4D7B2;
   color: white;
   font-size: 18px;
   padding: 10px 10px;
@@ -47,5 +47,5 @@
 
 .newInput .submitButton:hover {
   /* Styles for hover state of the submit button */
-  background-color: #FF6666;
+  background-color: #A0C49D;
 }

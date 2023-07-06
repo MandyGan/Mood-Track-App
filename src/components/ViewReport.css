@@ -1,7 +1,17 @@
 .viewReport {
-    background-color:#fea49f;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #fea49f;
+  padding: 20px;
+}
+
+.viewReport > div {
+  margin-bottom: 10px;
+}
+
+.viewReport button {
+  margin-top: 10px;
 }

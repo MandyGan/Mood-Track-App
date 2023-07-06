@@ -5,7 +5,7 @@ import { EmojiButton } from "./EmojiButton";
 export const NewRatingForm = ({ setRatings, setCurrentScreen }) => {
   const handleButtonClick = (rating) => {
     setRatings((ratings) => [...ratings, rating]);
-    setCurrentScreen(APP_STATES.home);
+    setCurrentScreen(APP_STATES.input);
   };
 
   return (

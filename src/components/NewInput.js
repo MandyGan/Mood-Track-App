@@ -2,17 +2,49 @@ import { useState } from "react";
 import { APP_STATES } from "../utils/constants";
 import "./NewInput.css";
 
-export const NewInput = ({ setFeelings, setCurrentScreen }) => {
+export const NewInput = ({
+  feelingsData,
+  setFeelingsData,
+  setCurrentScreen,
+}) => {
   const [input, setInput] = useState("");
   const [isValid, setIsValid] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
-      setFeelings((prevFeelings) => [...prevFeelings, input.trim()]);
+      const timestamp = new Date().getTime(); // Generate the current timestamp
+      const trimmedInput = input.trim();
+      const existingFeeling = feelingsData.find(
+        (feeling) => feeling.text === trimmedInput
+      );
+
+      if (existingFeeling) {
+        const updatedFeelingsData = feelingsData.map((feeling) => {
+          if (feeling.text === trimmedInput) {
+            return {
+              ...feeling,
+              count: feeling.count + 1,
+              timestamps: [...feeling.timestamps, timestamp],
+            };
+          }
+          return feeling;
+        });
+        setFeelingsData(updatedFeelingsData);
+      } else {
+        const newFeeling = {
+          text: trimmedInput,
+          count: 1,
+          timestamps: [timestamp],
+        };
+        setFeelingsData([...feelingsData, newFeeling]);
+      }
+
       setInput("");
       setCurrentScreen(APP_STATES.home); // Navigate back to the home screen after submitting
     }
   };
+
   const validate = (feeling) => {
     if (feeling.length === 0) {
       setIsValid(false);
@@ -20,10 +52,12 @@ export const NewInput = ({ setFeelings, setCurrentScreen }) => {
       setIsValid(true);
     }
   };
+
   const handleChange = (e) => {
     validate(e.target.value);
     setInput(e.target.value);
   };
+
   return (
     <div className="newInput">
       <form onSubmit={handleSubmit}>
@@ -38,7 +72,7 @@ export const NewInput = ({ setFeelings, setCurrentScreen }) => {
           value={input}
         />
         {!isValid && (
-          <p style={{ color: "red" }}>The feeling can not be empty...</p>
+          <p style={{ color: "red" }}>The feeling cannot be empty...</p>
         )}
         <button className="submitButton">Submit</button>
       </form>

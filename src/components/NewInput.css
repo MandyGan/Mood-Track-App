@@ -26,8 +26,8 @@
 .newInput input {
   /* Styles for the input box */
   width: 250px; /* Adjust the width to your desired size */
-  height: 40px; /* Adjust the height to your desired size */
-  padding: 20px;
+  height: 20px; /* Adjust the height to your desired size */
+  padding: 15px;
   font-size: 16px;
   border: 1px solid gray;
   border-radius: 5px;
@@ -36,10 +36,10 @@
 
 .newInput .submitButton {
   /* Styles for the submit button */
-  background-color: #4caf50;
+  background-color: #FF8989;
   color: white;
   font-size: 18px;
-  padding: 20px 10px;
+  padding: 10px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -47,5 +47,5 @@
 
 .newInput .submitButton:hover {
   /* Styles for hover state of the submit button */
-  background-color: #45a049;
+  background-color: #FF6666;
 }

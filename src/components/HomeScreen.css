@@ -1,5 +1,12 @@
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
 .homeScreenContainer {
-    background-color: darksalmon;
+    background-color: #FFF2CC;
     height: 100%;
     display: flex;
     align-items: center;
@@ -10,12 +17,15 @@
     height: 150px;
     width: 150px;
     border-radius: 50%;
-    border: none;
+    border: solid;
+    border-color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
   }
   .logButton {
-    background-color: yellow;
+    background-color: rgb(192, 220, 219) ;
   
   }
   .reportButton {
-      background-color: pink
+      background-color:#9de6b3
   }

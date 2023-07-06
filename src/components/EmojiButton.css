@@ -1,5 +1,14 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
 .emojiButton {
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    border: none;
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
 }

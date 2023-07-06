@@ -4,7 +4,9 @@ import { EmojiButton } from "./EmojiButton";
 
 export const NewRatingForm = ({ setRatings, setCurrentScreen }) => {
   const handleButtonClick = (rating) => {
-    setRatings((ratings) => [...ratings, rating]);
+    const timestamp = new Date().getTime(); // Generate the current timestamp
+    const ratingObject = { rating, timestamp };
+    setRatings((prevRatings) => [...prevRatings, ratingObject]);
     setCurrentScreen(APP_STATES.input);
   };
 

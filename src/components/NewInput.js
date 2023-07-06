@@ -27,7 +27,7 @@ export const NewInput = ({ setFeelings, setCurrentScreen }) => {
   return (
     <div className="newInput">
       <form onSubmit={handleSubmit}>
-        <h1>You feeling at the moment is: {input}</h1>
+        <h1>At this moment, I feel {input}</h1>
         <label htmlFor="feeling"></label>
         <input
           type="text"
@@ -38,15 +38,10 @@ export const NewInput = ({ setFeelings, setCurrentScreen }) => {
           value={input}
         />
         {!isValid && (
-          <p style={{ color: "red" }}>The feeling can not be empty</p>
+          <p style={{ color: "red" }}>The feeling can not be empty...</p>
         )}
-        <button>Submit</button>
+        <button className="submitButton">Submit</button>
       </form>
     </div>
   );
 };
-
-//only render a type box
-//a submit button
-//keep track of what you type in
-//save it and render it

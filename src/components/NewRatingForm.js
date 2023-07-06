@@ -10,11 +10,31 @@ export const NewRatingForm = ({ setRatings, setCurrentScreen }) => {
 
   return (
     <div className="newRatingForm">
-      <EmojiButton handleClick={() => handleButtonClick(-1)} text={-2} />
-      <EmojiButton handleClick={() => handleButtonClick(-1)} text={-1} />
-      <EmojiButton handleClick={() => handleButtonClick(0)} text={0} />
-      <EmojiButton handleClick={() => handleButtonClick(1)} text={1} />
-      <EmojiButton handleClick={() => handleButtonClick(2)} text={2} />
+      <EmojiButton
+        handleClick={() => handleButtonClick(-1)}
+        text={-2}
+        color={"red"}
+      />
+      <EmojiButton
+        handleClick={() => handleButtonClick(-1)}
+        text={-1}
+        color={"orange"}
+      />
+      <EmojiButton
+        handleClick={() => handleButtonClick(0)}
+        text={0}
+        color={"yellow"}
+      />
+      <EmojiButton
+        handleClick={() => handleButtonClick(1)}
+        text={1}
+        color={"green"}
+      />
+      <EmojiButton
+        handleClick={() => handleButtonClick(2)}
+        text={2}
+        color={"blue"}
+      />
     </div>
   );
 };

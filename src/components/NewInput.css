@@ -1,7 +1,51 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
 .newInput {
-    background-color:#fea49f;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  background-color: #fea49f;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: auto;
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+} 
+.newInput form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.newInput input {
+  /* Styles for the input box */
+  width: 250px; /* Adjust the width to your desired size */
+  height: 40px; /* Adjust the height to your desired size */
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.newInput .submitButton {
+  /* Styles for the submit button */
+  background-color: #4caf50;
+  color: white;
+  font-size: 18px;
+  padding: 20px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newInput .submitButton:hover {
+  /* Styles for hover state of the submit button */
+  background-color: #45a049;
 }

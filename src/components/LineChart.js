@@ -1,4 +1,5 @@
 import React from "react";
+import { APP_STATES } from "../utils/constants";
 import {
   Chart as ChartJS,
   LineElement,
@@ -20,7 +21,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-export const LineChart = ({ ratings }) => {
+export const LineChart = ({ ratings, setCurrentScreen }) => {
   // Prepare the data for the chart
   const chartData = {
     labels: ratings.map((rating) => rating.timestamp),
@@ -58,6 +59,9 @@ export const LineChart = ({ ratings }) => {
   return (
     <div>
       <Line data={chartData} options={chartOptions} />
+      <button onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
+        Back to ViewReport
+      </button>
     </div>
   );
 };

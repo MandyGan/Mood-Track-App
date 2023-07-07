@@ -2,11 +2,7 @@ import { useState } from "react";
 import { APP_STATES } from "../utils/constants";
 import "./NewInput.css";
 
-export const NewInput = ({
-  feelingsData,
-  setFeelingsData,
-  setCurrentScreen,
-}) => {
+export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
   const [input, setInput] = useState("");
   const [isValid, setIsValid] = useState(false);
 
@@ -15,30 +11,25 @@ export const NewInput = ({
     if (isValid) {
       const timestamp = new Date().getTime(); // Generate the current timestamp
       const trimmedInput = input.trim();
-      const existingFeeling = feelingsData.find(
-        (feeling) => feeling.text === trimmedInput
-      );
-
-      if (existingFeeling) {
-        const updatedFeelingsData = feelingsData.map((feeling) => {
-          if (feeling.text === trimmedInput) {
-            return {
-              ...feeling,
-              count: feeling.count + 1,
-              timestamps: [...feeling.timestamps, timestamp],
-            };
-          }
-          return feeling;
-        });
-        setFeelingsData(updatedFeelingsData);
-      } else {
-        const newFeeling = {
-          text: trimmedInput,
-          count: 1,
-          timestamps: [timestamp],
-        };
-        setFeelingsData([...feelingsData, newFeeling]);
-      }
+      setFeelingsData((prevFeelings) => {
+        const existingFeelingIndex = prevFeelings.findIndex(
+          (feeling) => feeling.text === trimmedInput
+        );
+        if (existingFeelingIndex !== -1) {
+          const updatedFeelingsData = [...prevFeelings];
+          const existingFeeling = updatedFeelingsData[existingFeelingIndex];
+          existingFeeling.count += 1;
+          existingFeeling.timestamps.push(timestamp);
+          return updatedFeelingsData;
+        } else {
+          const newFeeling = {
+            text: trimmedInput,
+            count: 1,
+            timestamps: [timestamp],
+          };
+          return [...prevFeelings, newFeeling];
+        }
+      });
 
       setInput("");
       setCurrentScreen(APP_STATES.home); // Navigate back to the home screen after submitting

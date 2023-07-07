@@ -12,7 +12,7 @@ export const WordCloud = ({ feelingsData, setCurrentScreen }) => {
         ))}
       </ul>
       <button onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
-        Back
+        Back to ViewReport
       </button>
     </div>
   );

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React from "react";
+import { APP_STATES } from "../utils/constants";
+>>>>>>> update-viewReport
 import {
   Chart as ChartJS,
   LineElement,
@@ -20,11 +25,15 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+<<<<<<< HEAD
 export const LineChart = ({ ratings }) => {
   const [units, setUnits] = useState("hour");
   const handleOnUnitsChange = (evt) => {
     setUnits(evt.target.value);
   };
+=======
+export const LineChart = ({ ratings, setCurrentScreen }) => {
+>>>>>>> update-viewReport
   // Prepare the data for the chart
   const chartData = {
     labels: ratings.map((rating) => rating.timestamp),
@@ -71,6 +80,9 @@ export const LineChart = ({ ratings }) => {
         </select>
       </label>
       <Line data={chartData} options={chartOptions} />
+      <button onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
+        Back to ViewReport
+      </button>
     </div>
   );
 };

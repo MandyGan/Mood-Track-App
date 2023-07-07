@@ -3,4 +3,6 @@ export const APP_STATES = {
   newRating: "newRating",
   viewReport: "viewReport",
   input: "input",
+  lineChart: "lineChart",
+  wordCloud: "wordCloud",
 };

@@ -52,7 +52,6 @@ function App() {
 
       {currentScreen === APP_STATES.input ? (
         <NewInput
-          feelingsData={feelingsData}
           setFeelingsData={setFeelingsData}
           setCurrentScreen={setCurrentScreen}
         />

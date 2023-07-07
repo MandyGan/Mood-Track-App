@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { HomeScreen, NewRatingForm, ViewReport, NewInput } from "./components";
+import {
+  HomeScreen,
+  NewRatingForm,
+  ViewReport,
+  NewInput,
+  LineChart,
+  WordCloud,
+} from "./components";
 import { APP_STATES } from "./utils/constants";
 
 const getInitialRatingData = () => {
@@ -12,11 +19,16 @@ const getInitialRatingData = () => {
   }
 };
 const getInitialFeelingsData = () => {
-  const feelingData = localStorage.getItem("moodFeelingsData");
-  if (!feelingData) {
+  try {
+    const feelingData = localStorage.getItem("moodFeelingsData");
+    if (!feelingData) {
+      return [];
+    } else {
+      return JSON.parse(feelingData);
+    }
+  } catch (error) {
+    console.error("Error parsing feelings data:", error);
     return [];
-  } else {
-    return JSON.parse(feelingData);
   }
 };
 
@@ -35,6 +47,7 @@ function App() {
       {currentScreen === APP_STATES.home ? (
         <HomeScreen setCurrentScreen={setCurrentScreen} />
       ) : null}
+
       {currentScreen === APP_STATES.newRating ? (
         <NewRatingForm
           setRatings={setRatings}
@@ -42,18 +55,24 @@ function App() {
         />
       ) : null}
 
-      {currentScreen === APP_STATES.viewReport ? (
-        <ViewReport
-          ratings={ratings}
-          feelingsData={feelingsData}
+      {currentScreen === APP_STATES.input ? (
+        <NewInput
+          setFeelingsData={setFeelingsData}
           setCurrentScreen={setCurrentScreen}
         />
       ) : null}
 
-      {currentScreen === APP_STATES.input ? (
-        <NewInput
+      {currentScreen === APP_STATES.viewReport ? (
+        <ViewReport setCurrentScreen={setCurrentScreen} />
+      ) : null}
+
+      {currentScreen === APP_STATES.lineChart ? (
+        <LineChart ratings={ratings} setCurrentScreen={setCurrentScreen} />
+      ) : null}
+
+      {currentScreen === APP_STATES.wordCloud ? (
+        <WordCloud
           feelingsData={feelingsData}
-          setFeelingsData={setFeelingsData}
           setCurrentScreen={setCurrentScreen}
         />
       ) : null}

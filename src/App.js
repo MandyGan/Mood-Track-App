@@ -62,10 +62,6 @@ function App() {
         />
       ) : null}
 
-      {currentScreen === APP_STATES.input ? (
-        <NewInput setFeelingsData={setFeelingsData} />
-      ) : null}
-
       {currentScreen === APP_STATES.viewReport ? (
         <ViewReport setCurrentScreen={setCurrentScreen} />
       ) : null}

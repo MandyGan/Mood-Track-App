@@ -11,33 +11,30 @@ export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
     if (isValid) {
       const timestamp = new Date().getTime(); // Generate the current timestamp
       const trimmedInput = input.trim();
-<<<<<<< HEAD
 
       setFeelingsData((feelingsData) => {
         const existingFeeling = feelingsData.find(
           (feeling) => feeling.text === trimmedInput
         );
-=======
-      setFeelingsData((prevFeelings) => {
-        const existingFeelingIndex = prevFeelings.findIndex(
-          (feeling) => feeling.text === trimmedInput
-        );
-        if (existingFeelingIndex !== -1) {
-          const updatedFeelingsData = [...prevFeelings];
-          const existingFeeling = updatedFeelingsData[existingFeelingIndex];
-          existingFeeling.count += 1;
-          existingFeeling.timestamps.push(timestamp);
-          return updatedFeelingsData;
-        } else {
-          const newFeeling = {
-            text: trimmedInput,
-            count: 1,
-            timestamps: [timestamp],
-          };
-          return [...prevFeelings, newFeeling];
-        }
-      });
->>>>>>> update-viewReport
+        setFeelingsData((prevFeelings) => {
+          const existingFeelingIndex = prevFeelings.findIndex(
+            (feeling) => feeling.text === trimmedInput
+          );
+          if (existingFeelingIndex !== -1) {
+            const updatedFeelingsData = [...prevFeelings];
+            const existingFeeling = updatedFeelingsData[existingFeelingIndex];
+            existingFeeling.count += 1;
+            existingFeeling.timestamps.push(timestamp);
+            return updatedFeelingsData;
+          } else {
+            const newFeeling = {
+              text: trimmedInput,
+              count: 1,
+              timestamps: [timestamp],
+            };
+            return [...prevFeelings, newFeeling];
+          }
+        });
 
         if (existingFeeling) {
           const updatedFeelingsData = feelingsData.map((feeling) => {

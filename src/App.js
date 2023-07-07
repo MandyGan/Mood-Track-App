@@ -62,11 +62,10 @@ function App() {
         />
       ) : null}
 
-<<<<<<< HEAD
       {currentScreen === APP_STATES.input ? (
-        <NewInput
-          setFeelingsData={setFeelingsData}
-=======
+        <NewInput setFeelingsData={setFeelingsData} />
+      ) : null}
+
       {currentScreen === APP_STATES.viewReport ? (
         <ViewReport setCurrentScreen={setCurrentScreen} />
       ) : null}
@@ -78,7 +77,6 @@ function App() {
       {currentScreen === APP_STATES.wordCloud ? (
         <WordCloud
           feelingsData={feelingsData}
->>>>>>> update-viewReport
           setCurrentScreen={setCurrentScreen}
         />
       ) : null}

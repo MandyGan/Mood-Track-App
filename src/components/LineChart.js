@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   LineElement,
@@ -21,6 +21,10 @@ ChartJS.register(
   Legend
 );
 export const LineChart = ({ ratings }) => {
+  const [units, setUnits] = useState("hour");
+  const handleOnUnitsChange = (evt) => {
+    setUnits(evt.target.value);
+  };
   // Prepare the data for the chart
   const chartData = {
     labels: ratings.map((rating) => rating.timestamp),
@@ -35,14 +39,16 @@ export const LineChart = ({ ratings }) => {
     ],
   };
 
+  console.log(chartData);
+
   // Configure the chart options
   const chartOptions = {
     scales: {
       x: {
         type: "time",
         time: {
-          unit: "minute",
-          tooltipFormat: "ll HH:mm", // Customize the tooltip format as per your requirement
+          // tooltipFormat: "MM/dd/yyyy hh:mm", // Customize the tooltip format as per your requirement
+          unit: units,
         },
       },
       y: {
@@ -57,6 +63,13 @@ export const LineChart = ({ ratings }) => {
 
   return (
     <div>
+      <label>
+        Units
+        <select value={units} onChange={handleOnUnitsChange}>
+          <option value="hour">Hour</option>
+          <option value="minute">Minute</option>
+        </select>
+      </label>
       <Line data={chartData} options={chartOptions} />
     </div>
   );

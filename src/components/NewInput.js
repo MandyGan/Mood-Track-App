@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { APP_STATES } from "../utils/constants";
+import Button from "@mui/joy/Button";
 import "./NewInput.css";
 
 export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
@@ -79,20 +80,31 @@ export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
     <div className="newInput">
       <form onSubmit={handleSubmit}>
         <h1>At this moment, I feel {input}</h1>
-        <label htmlFor="feeling"></label>
-        <input
-          type="text"
-          placeholder="type how you feel!"
-          name="feeling"
-          id="feeling"
-          onChange={handleChange}
-          value={input}
-        />
+        <div className="groupInputButton">
+          <label htmlFor="feeling"></label>
+          <input
+            type="text"
+            placeholder="Describe your feeling in a word..."
+            name="feeling"
+            id="feeling"
+            onChange={handleChange}
+            value={input}
+          />
+          <button className="submitButton">Submit</button>
+        </div>
+
         {!isValid && (
           <p style={{ color: "red" }}>The feeling cannot be empty...</p>
         )}
-        <button className="submitButton">Submit</button>
       </form>
+      <div className="button">
+        <Button
+          size="md"
+          color="primary"
+          onClick={() => setCurrentScreen(APP_STATES.home)}>
+          Back to Home
+        </Button>
+      </div>
     </div>
   );
 };

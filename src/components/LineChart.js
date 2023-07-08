@@ -28,7 +28,7 @@ ChartJS.register(
 );
 
 export const LineChart = ({ ratings, setCurrentScreen }) => {
-  const [units, setUnits] = useState("hour");
+  const [units, setUnits] = useState("minute");
   const handleOnUnitsChange = (evt, newValue) => {
     setUnits(newValue);
   };
@@ -77,6 +77,8 @@ export const LineChart = ({ ratings, setCurrentScreen }) => {
         <Option value="minute">Minute</Option>
         <Option value="hour">Hour</Option>
         <Option value="day">Day</Option>
+        <Option value="week">Week</Option>
+        <Option value="month">Month</Option>
       </Select>
       <div className="chartWrapper">
         <Line data={chartData} options={chartOptions} />

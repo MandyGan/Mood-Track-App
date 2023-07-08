@@ -63,7 +63,11 @@ function App() {
       ) : null}
 
       {currentScreen === APP_STATES.viewReport ? (
-        <ViewReport setCurrentScreen={setCurrentScreen} />
+        <ViewReport
+          setCurrentScreen={setCurrentScreen}
+          ratings={ratings}
+          feelingsData={feelingsData}
+        />
       ) : null}
 
       {currentScreen === APP_STATES.lineChart ? (

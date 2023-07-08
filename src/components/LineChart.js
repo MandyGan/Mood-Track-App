@@ -1,5 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Button from "@mui/joy/Button";
 import { APP_STATES } from "../utils/constants";
 import "./LineChart.css";
 import {
@@ -26,8 +29,8 @@ ChartJS.register(
 
 export const LineChart = ({ ratings, setCurrentScreen }) => {
   const [units, setUnits] = useState("hour");
-  const handleOnUnitsChange = (evt) => {
-    setUnits(evt.target.value);
+  const handleOnUnitsChange = (evt, newValue) => {
+    setUnits(newValue);
   };
   const chartData = {
     labels: ratings.map((rating) => rating.timestamp),
@@ -64,22 +67,26 @@ export const LineChart = ({ ratings, setCurrentScreen }) => {
 
   return (
     <div className="lineChart">
-      <label className="label">
-        Units
-        <select value={units} onChange={handleOnUnitsChange}>
-          <option value="hour">Hour</option>
-          <option value="minute">Minute</option>
-          <option value="day">Day</option>
-        </select>
-      </label>
+      <Select
+        color="warning"
+        placeholder="Units"
+        variant="solid"
+        value={units}
+        defaultValue="minute"
+        onChange={handleOnUnitsChange}>
+        <Option value="minute">Minute</Option>
+        <Option value="hour">Hour</Option>
+        <Option value="day">Day</Option>
+      </Select>
       <div className="chartWrapper">
         <Line data={chartData} options={chartOptions} />
       </div>
-      <button
-        className="backButton"
-        onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
-        Back to ViewReport
-      </button>
+      <Button
+        size="md"
+        color="primary"
+        onClick={() => setCurrentScreen(APP_STATES.home)}>
+        Back to Home
+      </Button>
     </div>
   );
 };

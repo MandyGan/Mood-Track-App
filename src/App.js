@@ -6,7 +6,7 @@ import {
   ViewReport,
   NewInput,
   LineChart,
-  WordCloud,
+  FeelingWordCloud,
 } from "./components";
 import { APP_STATES } from "./utils/constants";
 
@@ -71,7 +71,7 @@ function App() {
       ) : null}
 
       {currentScreen === APP_STATES.wordCloud ? (
-        <WordCloud
+        <FeelingWordCloud
           feelingsData={feelingsData}
           setCurrentScreen={setCurrentScreen}
         />

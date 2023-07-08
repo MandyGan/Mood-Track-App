@@ -4,3 +4,4 @@ export { ViewReport } from "./ViewReport";
 export { NewInput } from "./NewInput";
 export { LineChart } from "./LineChart";
 export { FeelingWordCloud } from "./FeelingWordCloud";
+export { Bubble } from "./Bubble";

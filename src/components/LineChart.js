@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { APP_STATES } from "../utils/constants";
+import "./LineChart.css";
 import {
   Chart as ChartJS,
   LineElement,
@@ -34,9 +35,10 @@ export const LineChart = ({ ratings, setCurrentScreen }) => {
       {
         label: "Rating",
         data: ratings.map((rating) => rating.rating),
-        fill: false,
+        fill: true,
         borderColor: "green",
-        borderWidth: 2,
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderWidth: 3,
       },
     ],
   };
@@ -47,7 +49,6 @@ export const LineChart = ({ ratings, setCurrentScreen }) => {
       x: {
         type: "time",
         time: {
-          // tooltipFormat: "MM/dd/yyyy hh:mm", // Customize the tooltip format as per your requirement
           unit: units,
         },
       },
@@ -62,16 +63,21 @@ export const LineChart = ({ ratings, setCurrentScreen }) => {
   };
 
   return (
-    <div>
-      <label>
+    <div className="lineChart">
+      <label className="label">
         Units
         <select value={units} onChange={handleOnUnitsChange}>
           <option value="hour">Hour</option>
           <option value="minute">Minute</option>
+          <option value="day">Day</option>
         </select>
       </label>
-      <Line data={chartData} options={chartOptions} />
-      <button onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
+      <div className="chartWrapper">
+        <Line data={chartData} options={chartOptions} />
+      </div>
+      <button
+        className="backButton"
+        onClick={() => setCurrentScreen(APP_STATES.viewReport)}>
         Back to ViewReport
       </button>
     </div>

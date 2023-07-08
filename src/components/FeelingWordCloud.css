@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+.wordCloudContainer {
+  height: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wordCloud {
+  width: 100%;
+  height: calc(100% - 40px); /* Subtract the height of the button */
+  margin-bottom: px;
+}
+
+.bubble {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFECEC;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.button{
+position: fixed;
+bottom: 70px;
+}

@@ -11,43 +11,17 @@ export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
     e.preventDefault();
     if (isValid) {
       const timestamp = new Date().getTime(); // Generate the current timestamp
-      const trimmedInput = input.trim();
+      const trimmedInput = input.trim().toLowerCase();
 
-      setFeelingsData((feelingsData) => {
-        const existingFeeling = feelingsData.find(
-          (feeling) => feeling.text === trimmedInput
+      setFeelingsData((prevFeelings) => {
+        const existingFeelingIndex = prevFeelings.findIndex(
+          (feeling) => feeling.text.toLowerCase() === trimmedInput
         );
-        setFeelingsData((prevFeelings) => {
-          const existingFeelingIndex = prevFeelings.findIndex(
-            (feeling) => feeling.text === trimmedInput
-          );
-          if (existingFeelingIndex !== -1) {
-            const updatedFeelingsData = [...prevFeelings];
-            const existingFeeling = updatedFeelingsData[existingFeelingIndex];
-            existingFeeling.count += 1;
-            existingFeeling.timestamps.push(timestamp);
-            return updatedFeelingsData;
-          } else {
-            const newFeeling = {
-              text: trimmedInput,
-              count: 1,
-              timestamps: [timestamp],
-            };
-            return [...prevFeelings, newFeeling];
-          }
-        });
-
-        if (existingFeeling) {
-          const updatedFeelingsData = feelingsData.map((feeling) => {
-            if (feeling.text === trimmedInput) {
-              return {
-                ...feeling,
-                count: feeling.count + 1,
-                timestamps: [...feeling.timestamps, timestamp],
-              };
-            }
-            return feeling;
-          });
+        if (existingFeelingIndex !== -1) {
+          const updatedFeelingsData = [...prevFeelings];
+          const existingFeeling = updatedFeelingsData[existingFeelingIndex];
+          existingFeeling.count += 1;
+          existingFeeling.timestamps.push(timestamp);
           return updatedFeelingsData;
         } else {
           const newFeeling = {
@@ -55,7 +29,7 @@ export const NewInput = ({ setFeelingsData, setCurrentScreen }) => {
             count: 1,
             timestamps: [timestamp],
           };
-          return [...feelingsData, newFeeling];
+          return [...prevFeelings, newFeeling];
         }
       });
     }

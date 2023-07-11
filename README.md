@@ -36,7 +36,7 @@ LinkedIn: [linkedin.com/in/lingling-gan/](https://www.linkedin.com/in/lingling-g
 - Use React to create a mood track app 
 - Users can log their mood by selecting rating ranging from -2 to 2 
 - Users can log their feeling by inputing a word 
-- Users can view their mood trend based on minute, hour, day, week and month
+- Users can view their mood trend in a line chart based on minute, hour, day, week and month
 - Users can view their the frequency of each feeling in a word cloud 
 
 ### Extension Goals 

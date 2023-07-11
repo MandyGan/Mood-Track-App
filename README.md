@@ -31,7 +31,7 @@ LinkedIn: [linkedin.com/in/lingling-gan/](https://www.linkedin.com/in/lingling-g
 
 ## Goals
 
-### Project Goal
+### Project Goals
 
 - Use React to create a mood track app 
 - Users can log their mood by selecting rating ranging from -2 to 2 

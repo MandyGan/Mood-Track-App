@@ -9,6 +9,7 @@ import {
   FeelingWordCloud,
 } from "./components";
 import { APP_STATES } from "./utils/constants";
+import { ResponsiveAppBar } from "./components/Navbar";
 
 const getInitialRatingData = () => {
   const ratingData = localStorage.getItem("moodRatings");
@@ -35,15 +36,17 @@ const getInitialFeelingsData = () => {
 function App() {
   const [currentScreen, setCurrentScreen] = useState(APP_STATES.home);
   const [ratings, setRatings] = useState(getInitialRatingData);
-  const [feelingsData, setFeelingsData] = useState(getInitialFeelingsData);
+  const [feelings, setFeelings] = useState(getInitialFeelingsData);
 
   useEffect(() => {
     localStorage.setItem("moodRatings", JSON.stringify(ratings));
-    localStorage.setItem("moodFeelingsData", JSON.stringify(feelingsData));
-  }, [ratings, feelingsData]);
+    localStorage.setItem("moodFeelingsData", JSON.stringify(feelings));
+  }, [ratings, feelings]);
 
   return (
     <div className="appContainer">
+      <ResponsiveAppBar />
+
       {currentScreen === APP_STATES.home ? (
         <HomeScreen setCurrentScreen={setCurrentScreen} />
       ) : null}
@@ -57,7 +60,7 @@ function App() {
 
       {currentScreen === APP_STATES.input ? (
         <NewInput
-          setFeelingsData={setFeelingsData}
+          setFeelingsData={setFeelings}
           setCurrentScreen={setCurrentScreen}
         />
       ) : null}
@@ -66,7 +69,7 @@ function App() {
         <ViewReport
           setCurrentScreen={setCurrentScreen}
           ratings={ratings}
-          feelingsData={feelingsData}
+          feelings={feelings}
         />
       ) : null}
 
@@ -76,7 +79,7 @@ function App() {
 
       {currentScreen === APP_STATES.wordCloud ? (
         <FeelingWordCloud
-          feelingsData={feelingsData}
+          feelingsData={feelings}
           setCurrentScreen={setCurrentScreen}
         />
       ) : null}

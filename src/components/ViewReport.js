@@ -6,7 +6,7 @@ import TabPanel from "@mui/joy/TabPanel";
 import { LineChart } from "./LineChart";
 import { FeelingWordCloud } from "./FeelingWordCloud";
 
-export const ViewReport = ({ ratings, feelingsData, setCurrentScreen }) => {
+export const ViewReport = ({ ratings, feelings, setCurrentScreen }) => {
   return (
     <div>
       <Tabs
@@ -22,7 +22,7 @@ export const ViewReport = ({ ratings, feelingsData, setCurrentScreen }) => {
         </TabPanel>
         <TabPanel value={1} sx={{ p: 2 }}>
           <FeelingWordCloud
-            feelingsData={feelingsData}
+            feelings={feelings}
             setCurrentScreen={setCurrentScreen}
           />
         </TabPanel>

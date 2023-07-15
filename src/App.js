@@ -7,6 +7,8 @@ import {
   NewInput,
   LineChart,
   FeelingWordCloud,
+  LoginForm,
+  RegisterForm,
 } from "./components";
 import { APP_STATES } from "./utils/constants";
 import { ResponsiveAppBar } from "./components/Navbar";
@@ -45,7 +47,7 @@ function App() {
 
   return (
     <div className="appContainer">
-      <ResponsiveAppBar />
+      <ResponsiveAppBar setCurrentScreen={setCurrentScreen} />
 
       {currentScreen === APP_STATES.home ? (
         <HomeScreen setCurrentScreen={setCurrentScreen} />
@@ -82,6 +84,14 @@ function App() {
           feelingsData={feelings}
           setCurrentScreen={setCurrentScreen}
         />
+      ) : null}
+
+      {currentScreen === APP_STATES.login ? (
+        <LoginForm setCurrentScreen={setCurrentScreen} />
+      ) : null}
+
+      {currentScreen === APP_STATES.register ? (
+        <RegisterForm setCurrentScreen={setCurrentScreen} />
       ) : null}
     </div>
   );

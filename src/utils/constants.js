@@ -5,4 +5,6 @@ export const APP_STATES = {
   input: "input",
   lineChart: "lineChart",
   wordCloud: "wordCloud",
+  login: "login",
+  register: "register",
 };

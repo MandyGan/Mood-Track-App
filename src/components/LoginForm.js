@@ -8,7 +8,23 @@ export const LoginForm = ({ setCurrentScreen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
+    const { name, password } = inputs;
+    // Get the user data from localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      if (user.name === name && user.password === password) {
+        setCurrentScreen(APP_STATES.home);
+      } else {
+        // Invalid credentials
+        console.log("Invalid username or password");
+        // Display an error message or perform other actions as needed
+      }
+    } else {
+      // User not found
+      console.log("User not found");
+      // Display an error message or perform other actions as needed
+    }
   };
 
   const handleChange = (e) => {
@@ -48,18 +64,10 @@ export const LoginForm = ({ setCurrentScreen }) => {
             value={inputs.password}
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" size="md" color="primary">
           Submit
         </Button>
       </form>
-      <div className="back-to-home">
-        <Button
-          size="md"
-          color="primary"
-          onClick={() => setCurrentScreen(APP_STATES.home)}>
-          Back to Home
-        </Button>
-      </div>
     </div>
   );
 };

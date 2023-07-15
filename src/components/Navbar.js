@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,7 +13,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { APP_STATES } from "../utils/constants";
 
 export function ResponsiveAppBar({ setCurrentScreen }) {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -25,11 +27,18 @@ export function ResponsiveAppBar({ setCurrentScreen }) {
 
   const handleRegister = () => {
     setCurrentScreen(APP_STATES.register);
+    setIsRegistered(true);
   };
+
   const handleLogin = () => {
     setCurrentScreen(APP_STATES.login);
+    setIsLoggedIn(true);
   };
-  const handleLogout = () => {};
+
+  const handleLogout = () => {
+    setCurrentScreen(APP_STATES.login);
+    setIsLoggedIn(false);
+  };
 
   return (
     <AppBar position="static">
@@ -58,10 +67,7 @@ export function ResponsiveAppBar({ setCurrentScreen }) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <PermIdentityIcon
-                  alt="Remy Sharp"
-                  src="/static/images/avatar/2.jpg"
-                />
+                <PermIdentityIcon alt="profile icon" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -79,15 +85,21 @@ export function ResponsiveAppBar({ setCurrentScreen }) {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}>
-              <MenuItem onClick={handleRegister}>
-                <Typography textAlign="center">Register</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleLogin}>
-                <Typography textAlign="center">Login</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
+              {!isRegistered && (
+                <MenuItem onClick={handleRegister}>
+                  <Typography textAlign="center">Register</Typography>
+                </MenuItem>
+              )}
+              {!isLoggedIn && (
+                <MenuItem onClick={handleLogin}>
+                  <Typography textAlign="center">Login</Typography>
+                </MenuItem>
+              )}
+              {isLoggedIn && (
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>

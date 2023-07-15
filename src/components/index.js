@@ -5,3 +5,5 @@ export { NewInput } from "./NewInput";
 export { LineChart } from "./LineChart";
 export { FeelingWordCloud } from "./FeelingWordCloud";
 export { Bubble } from "./Bubble";
+export { LoginForm } from "./LoginForm";
+export { RegisterForm } from "./RegisterForm.js";

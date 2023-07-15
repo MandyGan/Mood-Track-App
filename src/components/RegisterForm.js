@@ -3,7 +3,7 @@ import { APP_STATES } from "../utils/constants";
 import Button from "@mui/joy/Button";
 import "./RegisterForm.css";
 
-export const RegisterForm = ({ setCurrentScreen }) => {
+export const RegisterForm = ({ setCurrentScreen, setIsRegistered }) => {
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -12,7 +12,10 @@ export const RegisterForm = ({ setCurrentScreen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
+    const { name, password } = inputs;
+    const user = { name, password };
+    localStorage.setItem("user", JSON.stringify(user));
+    setCurrentScreen(APP_STATES.home); // Update the screen state
   };
 
   const handleChange = (e) => {
@@ -63,18 +66,10 @@ export const RegisterForm = ({ setCurrentScreen }) => {
             value={inputs.password}
           />
         </div>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" size="md" color="primary">
           Submit
         </Button>
       </form>
-      <div className="back-to-home">
-        <Button
-          size="md"
-          color="primary"
-          onClick={() => setCurrentScreen(APP_STATES.home)}>
-          Back to Home
-        </Button>
-      </div>
     </div>
   );
 };

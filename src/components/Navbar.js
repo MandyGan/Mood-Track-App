@@ -11,11 +11,18 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { APP_STATES } from "../utils/constants";
+import { LoginForm } from "./LoginForm";
+import { RegisterForm } from "./RegisterForm";
 
-export function ResponsiveAppBar({ setCurrentScreen }) {
+export function ResponsiveAppBar({
+  currentScreen,
+  setCurrentScreen,
+  isLoggedIn,
+  setIsLoggedIn,
+  isRegistered,
+  setIsRegistered,
+}) {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -27,12 +34,10 @@ export function ResponsiveAppBar({ setCurrentScreen }) {
 
   const handleRegister = () => {
     setCurrentScreen(APP_STATES.register);
-    setIsRegistered(true);
   };
 
   const handleLogin = () => {
     setCurrentScreen(APP_STATES.login);
-    setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
@@ -104,6 +109,18 @@ export function ResponsiveAppBar({ setCurrentScreen }) {
           </Box>
         </Toolbar>
       </Container>
+      {currentScreen === APP_STATES.login && (
+        <LoginForm
+          setCurrentScreen={setCurrentScreen} // Pass the setCurrentScreen function
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      )}
+      {currentScreen === APP_STATES.register && (
+        <RegisterForm
+          setCurrentScreen={setCurrentScreen} // Pass the setCurrentScreen function
+          setIsRegistered={setIsRegistered}
+        />
+      )}
     </AppBar>
   );
 }

@@ -3,7 +3,7 @@ import { APP_STATES } from "../utils/constants";
 import Button from "@mui/joy/Button";
 import "./LoginForm.css";
 
-export const LoginForm = ({ setCurrentScreen }) => {
+export const LoginForm = ({ setCurrentScreen, setIsLoggedIn }) => {
   const [inputs, setInputs] = useState({ name: "", email: "", password: "" });
 
   const handleSubmit = (e) => {
@@ -15,6 +15,7 @@ export const LoginForm = ({ setCurrentScreen }) => {
       const user = JSON.parse(storedUser);
       if (user.name === name && user.password === password) {
         setCurrentScreen(APP_STATES.home);
+        setIsLoggedIn(true);
       } else {
         // Invalid credentials
         console.log("Invalid username or password");
@@ -64,9 +65,11 @@ export const LoginForm = ({ setCurrentScreen }) => {
             value={inputs.password}
           />
         </div>
-        <Button type="submit" size="md" color="primary">
-          Submit
-        </Button>
+        <div className="submit-group">
+          <Button type="submit" size="md" color="primary">
+            Submit
+          </Button>
+        </div>
       </form>
     </div>
   );

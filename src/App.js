@@ -7,8 +7,6 @@ import {
   NewInput,
   LineChart,
   FeelingWordCloud,
-  LoginForm,
-  RegisterForm,
 } from "./components";
 import { APP_STATES } from "./utils/constants";
 import { ResponsiveAppBar } from "./components/Navbar";
@@ -37,8 +35,10 @@ const getInitialFeelingsData = () => {
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState(APP_STATES.home);
-  const [ratings, setRatings] = useState(getInitialRatingData);
-  const [feelings, setFeelings] = useState(getInitialFeelingsData);
+  const [ratings, setRatings] = useState(getInitialRatingData());
+  const [feelings, setFeelings] = useState(getInitialFeelingsData());
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("moodRatings", JSON.stringify(ratings));
@@ -47,18 +47,26 @@ function App() {
 
   return (
     <div className="appContainer">
-      <ResponsiveAppBar setCurrentScreen={setCurrentScreen} />
+      <ResponsiveAppBar
+        setCurrentScreen={setCurrentScreen}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        isRegistered={isRegistered}
+        setIsRegistered={setIsRegistered}
+        currentScreen={currentScreen}
+      />
 
       {currentScreen === APP_STATES.home ? (
         <HomeScreen setCurrentScreen={setCurrentScreen} />
       ) : null}
 
-      {currentScreen === APP_STATES.newRating ? (
-        <NewRatingForm
-          setRatings={setRatings}
-          setCurrentScreen={setCurrentScreen}
-        />
-      ) : null}
+      {isLoggedIn &&
+        (currentScreen === APP_STATES.newRating ? (
+          <NewRatingForm
+            setRatings={setRatings}
+            setCurrentScreen={setCurrentScreen}
+          />
+        ) : null)}
 
       {currentScreen === APP_STATES.input ? (
         <NewInput
@@ -67,13 +75,14 @@ function App() {
         />
       ) : null}
 
-      {currentScreen === APP_STATES.viewReport ? (
-        <ViewReport
-          setCurrentScreen={setCurrentScreen}
-          ratings={ratings}
-          feelings={feelings}
-        />
-      ) : null}
+      {isLoggedIn &&
+        (currentScreen === APP_STATES.viewReport ? (
+          <ViewReport
+            setCurrentScreen={setCurrentScreen}
+            ratings={ratings}
+            feelings={feelings}
+          />
+        ) : null)}
 
       {currentScreen === APP_STATES.lineChart ? (
         <LineChart ratings={ratings} setCurrentScreen={setCurrentScreen} />
@@ -84,14 +93,6 @@ function App() {
           feelingsData={feelings}
           setCurrentScreen={setCurrentScreen}
         />
-      ) : null}
-
-      {currentScreen === APP_STATES.login ? (
-        <LoginForm setCurrentScreen={setCurrentScreen} />
-      ) : null}
-
-      {currentScreen === APP_STATES.register ? (
-        <RegisterForm setCurrentScreen={setCurrentScreen} />
       ) : null}
     </div>
   );

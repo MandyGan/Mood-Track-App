@@ -56,7 +56,7 @@ function App() {
         setIsRegistered={setIsRegistered}
         currentScreen={currentScreen}
       />
-      <div className="content-container">
+      <div>
         {currentScreen === APP_STATES.home ? (
           <HomeScreen setCurrentScreen={setCurrentScreen} />
         ) : null}

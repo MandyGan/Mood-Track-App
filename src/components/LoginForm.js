@@ -10,24 +10,22 @@ export const LoginForm = ({ setCurrentScreen, setIsLoggedIn }) => {
     e.preventDefault();
     const { name, password } = inputs;
     // Get the user data from localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      if (user.name === name && user.password === password) {
+    const storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+      const users = JSON.parse(storedUsers);
+      const user = users.find(
+        (user) => user.name === name && user.password === password
+      );
+      if (user) {
         setCurrentScreen(APP_STATES.home);
         setIsLoggedIn(true);
       } else {
-        // Invalid credentials
-        console.log("Invalid username or password");
-        // Display an error message or perform other actions as needed
+        console.log("user do not exist ");
       }
     } else {
-      // User not found
-      console.log("User not found");
-      // Display an error message or perform other actions as needed
+      console.log("please register");
     }
   };
-
   const handleChange = (e) => {
     const fieldName = e.target.name;
     const value = e.target.value;

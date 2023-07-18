@@ -7,6 +7,7 @@ import {
   NewInput,
   LineChart,
   FeelingWordCloud,
+  LoginReminder,
 } from "./components";
 import { APP_STATES } from "./utils/constants";
 import { ResponsiveAppBar } from "./components/Navbar";
@@ -55,45 +56,58 @@ function App() {
         setIsRegistered={setIsRegistered}
         currentScreen={currentScreen}
       />
+      <div className="content-container">
+        {currentScreen === APP_STATES.home ? (
+          <HomeScreen setCurrentScreen={setCurrentScreen} />
+        ) : null}
 
-      {currentScreen === APP_STATES.home ? (
-        <HomeScreen setCurrentScreen={setCurrentScreen} />
-      ) : null}
+        {currentScreen === APP_STATES.newRating ? (
+          isLoggedIn ? (
+            <NewRatingForm
+              setRatings={setRatings}
+              setCurrentScreen={setCurrentScreen}
+            />
+          ) : (
+            <LoginReminder
+              setCurrentScreen={setCurrentScreen}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          )
+        ) : null}
 
-      {isLoggedIn &&
-        (currentScreen === APP_STATES.newRating ? (
-          <NewRatingForm
-            setRatings={setRatings}
+        {currentScreen === APP_STATES.input ? (
+          <NewInput
+            setFeelingsData={setFeelings}
             setCurrentScreen={setCurrentScreen}
           />
-        ) : null)}
+        ) : null}
 
-      {currentScreen === APP_STATES.input ? (
-        <NewInput
-          setFeelingsData={setFeelings}
-          setCurrentScreen={setCurrentScreen}
-        />
-      ) : null}
+        {currentScreen === APP_STATES.viewReport ? (
+          isLoggedIn ? (
+            <ViewReport
+              setCurrentScreen={setCurrentScreen}
+              ratings={ratings}
+              feelings={feelings}
+            />
+          ) : (
+            <LoginReminder
+              setCurrentScreen={setCurrentScreen}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          )
+        ) : null}
 
-      {isLoggedIn &&
-        (currentScreen === APP_STATES.viewReport ? (
-          <ViewReport
+        {currentScreen === APP_STATES.lineChart ? (
+          <LineChart ratings={ratings} setCurrentScreen={setCurrentScreen} />
+        ) : null}
+
+        {currentScreen === APP_STATES.wordCloud ? (
+          <FeelingWordCloud
+            feelingsData={feelings}
             setCurrentScreen={setCurrentScreen}
-            ratings={ratings}
-            feelings={feelings}
           />
-        ) : null)}
-
-      {currentScreen === APP_STATES.lineChart ? (
-        <LineChart ratings={ratings} setCurrentScreen={setCurrentScreen} />
-      ) : null}
-
-      {currentScreen === APP_STATES.wordCloud ? (
-        <FeelingWordCloud
-          feelingsData={feelings}
-          setCurrentScreen={setCurrentScreen}
-        />
-      ) : null}
+        ) : null}
+      </div>
     </div>
   );
 }

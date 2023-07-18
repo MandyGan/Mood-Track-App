@@ -7,3 +7,4 @@ export { FeelingWordCloud } from "./FeelingWordCloud";
 export { Bubble } from "./Bubble";
 export { LoginForm } from "./LoginForm";
 export { RegisterForm } from "./RegisterForm.js";
+export { LoginReminder } from "./LoginReminder";

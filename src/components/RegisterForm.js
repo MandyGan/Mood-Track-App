@@ -13,9 +13,21 @@ export const RegisterForm = ({ setCurrentScreen, setIsRegistered }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, password } = inputs;
-    const user = { name, password };
-    localStorage.setItem("user", JSON.stringify(user));
-    setCurrentScreen(APP_STATES.home); // Update the screen state
+    const storedUsers = localStorage.getItem("users");
+    let users = [];
+    if (storedUsers.length !== 0) {
+      const existingUser = users.find((user) => user.name === name);
+      if (existingUser) {
+        console.log("User existed, please log in");
+        setCurrentScreen(APP_STATES.login);
+        setIsRegistered(true);
+      }
+      const newUser = { name, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      setCurrentScreen(APP_STATES.login);
+      setIsRegistered(true);
+    }
   };
 
   const handleChange = (e) => {
